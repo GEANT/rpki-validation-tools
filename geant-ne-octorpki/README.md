@@ -18,10 +18,8 @@ This role has been developed and tested on Ubuntu 18.04 (Bionic Beaver)
 Role Variables
 --------------
 
-Variables that should be filled are:
+In the hosts.yaml you can specifiy a syslog destination:
 
-* octorpki_homedir (default /usr/share/octorpki)'
-In the hosts.yaml you can specifiy a syslog destination. 
 * __routinator_syslog_destination:__ 
               __protocol:__ tcp 
               __target:__ 10.10.10.10
