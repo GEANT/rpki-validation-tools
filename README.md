@@ -64,6 +64,7 @@ all:
 Once you have edited the inventory file to suit your environment, run the playbooks:
 
 ```ansible-playbook -i hosts.yaml install_routinator.yaml```
+
 or with ssh/sudo passwords:
 
 ```ansible-playbook -i hosts.yaml install_routinator.yaml --ask-pass --ask-become-pass```
