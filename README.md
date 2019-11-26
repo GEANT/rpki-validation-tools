@@ -17,6 +17,10 @@ To run these playbooks with little fuss, you will need:
 - Ubuntu (we developed this on 18.04)
 - git
 - Ansible
+- sshpass (if you want to use Ansible with passwords)
+
+Git clone the repository to your ansible machine, cd into the directory 'rpki-validation-tools'..
+
 
 ## Configuring the inventory
 
@@ -60,10 +64,17 @@ all:
 Once you have edited the inventory file to suit your environment, run the playbooks:
 
 ```ansible-playbook -i hosts.yaml install_routinator.yaml```
+or with ssh/sudo passwords:
+
+```ansible-playbook -i hosts.yaml install_routinator.yaml --ask-pass --ask-become-pass```
 
 This will install Routinator. You can do the same for octo-rpki!
 
 ```ansible-playbook -i hosts.yaml install_octorpki.yaml```
+
+And again, but this time with ssh/sudo passwords:
+
+```ansible-playbook -i hosts.yaml install_octorpki.yaml --ask-pass --ask-become-pass```
 
 ## Validating the validators
 The role will set up its validator as a systemd service, so you can check the status with `sudo systemctl status routinator` (or the octo-rpki equivalent). 
