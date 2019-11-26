@@ -1,7 +1,7 @@
-Role Name
+geant-ne-routinator
 =========
 
-This role installs Routinator, an RPKI validator from NLNETlabs (https://www.nlnetlabs.nl/projects/rpki/routinator/).
+This role installs Routinator (currently 0.6.2), an RPKI validator from NLNETlabs (https://www.nlnetlabs.nl/projects/rpki/routinator/).
 
 The role copies an executables obtained following this procedure: https://github.com/NLnetLabs/routinator.
 
@@ -20,10 +20,13 @@ Defaults:
 * __routinator_home:__ /var/cache/routinator
 * __routinator_loglevel:__ "WARN"
 
-To be filled: 
+To be filled (in the hosts.yaml file): 
 * __routinator_listen_ipv4__: 192.168.56.199:8282
-* __routinator_listen_ipv6__: 
-
+* __routinator_listen_ipv6__:
+* __routinator_syslog_destination:__ 
+              __protocol:__ tcp 
+              __target:__ 10.10.10.10
+              __port:__ 514
 
 Dependencies
 ------------
@@ -32,12 +35,7 @@ No dependencies
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
-- hosts: host
-  roles:
-  - geant-ne-routinator
-  become: yes
+Check install_routinator.yaml in the upper folder. 
 
 License
 -------
