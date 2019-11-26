@@ -1,0 +1,14 @@
+# /etc/systemd/system/routinator.service
+[Unit]
+Description=Routinator
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/routinator -c /etc/routinator.conf --syslog server 
+Restart=on-failure
+RestartSec=5s
+User=routinator
+Group=routinator
+
+[Install]
+WantedBy=multi-user.target

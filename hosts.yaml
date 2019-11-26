@@ -1,0 +1,31 @@
+---
+all:
+  children: 
+    routinator_vms: 
+      hosts:
+        routinator-vm:
+    octorpki_vms: 
+      hosts:
+        octorpki-vm:
+  hosts:
+    routinator-vm:
+      ansible_host: 192.168.56.198
+      become: yes
+      ansible_python_interpreter: /usr/bin/python3
+      ansible_user: vagrant
+      routinator_listen_addresses:
+        - 192.168.56.198
+      routinator_syslog_destination: 
+              protocol: tcp 
+              target: 10.10.10.10
+              port: 514
+    octorpki-vm:
+      ansible_host: 192.168.56.197
+      become: yes
+      ansible_python_interpreter: /usr/bin/python3
+      ansible_user: vagrant
+      octorpki_syslog_destination: 
+              protocol: tcp 
+              target: 192.168.22.23
+              port: 666
+

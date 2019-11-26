@@ -1,0 +1,4 @@
+if $programname == 'gortr' or $programname == 'octorpki' then /var/log/octorpki.log
+{% if octorpki_syslog_destination is defined %}if $programname == 'gortr' or $programname == 'octorpki' then {% if octorpki_syslog_destination.protocol == 'udp'  %}@{% elif octorpki_syslog_destination.protocol == 'tcp'  %}@@{% endif %}{{octorpki_syslog_destination.target}}{% if octorpki_syslog_destination.port is defined %}:{{octorpki_syslog_destination.port}}{% endif %}{% endif %}
+
+& ~

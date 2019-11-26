@@ -1,0 +1,4 @@
+- hosts: routinator_vms
+  roles:
+  - geant-ne-routinator
+  become: yes

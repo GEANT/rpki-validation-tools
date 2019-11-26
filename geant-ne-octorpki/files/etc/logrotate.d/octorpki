@@ -1,0 +1,8 @@
+/var/log/octorpki.log {
+  compress
+  copytruncate
+  dateext
+  missingok
+  notifempty
+  rotate 14
+}

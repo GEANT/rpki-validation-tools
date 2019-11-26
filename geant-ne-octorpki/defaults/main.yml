@@ -1,0 +1,4 @@
+---
+# defaults file for geant-ne-octorpki
+octorpki_homedir: /usr/share/octorpki
+octorpki_packages_dir: "{{ octorpki_homedir }}/packages"

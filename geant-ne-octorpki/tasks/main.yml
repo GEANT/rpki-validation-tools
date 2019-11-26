@@ -1,0 +1,54 @@
+---
+# tasks file for geant-ne-octorpki
+- name: main | Add octorpki user
+  user:
+    name: octorpki
+    home: "{{ octorpki_homedir }}"
+    shell: /usr/bin/false
+
+- name: main | Create package storage folder
+  file: 
+    path: "{{ octorpki_packages_dir }}"
+    state: directory
+    mode: '0755'
+
+- name: main | Rsyslogd configuration
+  template:
+    src: etc/rsyslog.d/50-octorpki.conf.j2
+    dest: /etc/rsyslog.d/50-octorpki.conf
+  notify: 
+    - restart rsyslog
+
+- name: main | Logrotate configuration
+  copy:
+    src: etc/logrotate.d/octorpki
+    dest: /etc/logrotate.d/octorpki
+
+- name: main | Copy packages
+  copy: 
+    src: "packages/{{ item.value.package }}"
+    dest: "{{ octorpki_packages_dir }}/{{ item.value.package }}"
+  loop: "{{ lookup('dict', octo_components) }}"
+
+- name: main | Install  packages
+  apt: 
+    deb: "{{ octorpki_packages_dir }}/{{ item.value.package }}"
+  loop: "{{ lookup('dict', octo_components) }}"
+
+- name: main | Copy systemd service definition
+  template: 
+    src: "etc/systemd/system/{{item.key}}.service.j2"
+    dest: "/etc/systemd/system/{{ item.key }}.service"
+  loop: "{{ lookup('dict', octo_components) }}"
+
+- name: main | Download TAL from ARIN
+  get_url: 
+    url: https://www.arin.net/resources/manage/rpki/arin-rfc7730.tal
+    dest: /usr/share/octorpki/tals/arin.tal
+
+- name: main | Enable and start systemd services
+  systemd:
+    name: "{{ item.key }}"
+    state: started
+    enabled: yes
+  loop: "{{ lookup('dict', octo_components) }}"

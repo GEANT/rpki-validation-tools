@@ -1,0 +1,16 @@
+---
+# handlers file for geant-ne-octorpki
+- name: restart octorpki
+  service:
+    name: octorpki
+    state: restarted
+
+- name: restart gortr
+  service:
+    name: gortr
+    state: restarted
+
+- name: restart rsyslog
+  service:
+    name: rsyslog
+    state: restarted

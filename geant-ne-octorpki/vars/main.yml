@@ -1,0 +1,8 @@
+---
+# vars file for geant-ne-octorpki
+octo_components: 
+  gortr: 
+    package: gortr_0.12.0_amd64.deb
+  octorpki: 
+    package: octorpki_1.1.4_amd64.deb
+

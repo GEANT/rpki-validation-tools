@@ -1,0 +1,13 @@
+[Unit]
+Description=GoRTR
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/gortr  -metrics.addr=:8081 -verify=false -cache=http://localhost:8080/output.json
+Restart=on-failure
+RestartSec=5s
+User=octorpki
+Group=octorpki
+
+[Install]
+WantedBy=multi-user.target

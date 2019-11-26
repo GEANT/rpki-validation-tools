@@ -1,0 +1,13 @@
+[Unit]
+Description=Octo-RPKI Validator
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/octorpki -cache /usr/share/octorpki/cache/ -mode server -output.sign=false -tal.root /usr/share/octorpki/tals/afrinic.tal,/usr/share/octorpki/tals/apnic.tal,/usr/share/octorpki/tals/arin.tal,/usr/share/octorpki/tals/lacnic.tal,/usr/share/octorpki/tals/ripe.tal
+Restart=on-failure
+RestartSec=5s
+User=octorpki
+Group=octorpki
+
+[Install]
+WantedBy=multi-user.target

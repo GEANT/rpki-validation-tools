@@ -1,0 +1,4 @@
+if $programname == 'routinator' then /var/log/routinator.log
+{% if routinator_syslog_destination is defined %}if $programname == 'routinator' then {% if routinator_syslog_destination.protocol == 'udp'  %}@{% elif routinator_syslog_destination.protocol == 'tcp'  %}@@{% endif %}{{routinator_syslog_destination.target}}{% if routinator_syslog_destination.port is defined %}:{{routinator_syslog_destination.port}}{% endif %}{% endif %}
+
+& ~

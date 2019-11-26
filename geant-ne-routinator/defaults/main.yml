@@ -1,0 +1,4 @@
+---
+routinator_loglevel: "WARN"
+routinator_home: /var/cache/routinator
+routinator_listen_port: 8282

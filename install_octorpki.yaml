@@ -1,0 +1,4 @@
+- hosts: octorpki_vms
+  roles:
+  - geant-ne-octorpki
+  become: yes

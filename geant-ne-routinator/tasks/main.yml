@@ -1,0 +1,64 @@
+---
+# tasks file for geant-ne-routinator
+
+
+# Routinator will not run as root.
+- name: main | Add routinator user
+  user:
+    name: routinator
+    home: "{{ routinator_home }}"
+    shell: /usr/bin/false
+
+# This executable has been created using cargo install routinator. 
+# check https://github.com/NLnetLabs/routinator
+- name: main | Install routinator executable
+  copy:
+    src: usr/local/bin/routinator-0.6.2
+    dest: /usr/local/bin/routinator
+    mode: +x
+
+# Logging: 
+- name: main | Rsyslogd configuration
+  template:
+    src: etc/rsyslog.d/50-routinator.conf.j2
+    dest: /etc/rsyslog.d/50-routinator.conf
+  notify:
+    - restart rsyslog
+
+- name: main | Logrotate configuration
+  copy:
+    src: etc/logrotate.d/routinator
+    dest: /etc/logrotate.d/routinator
+
+# SystemD: 
+- name: main | Systemd service definition
+  copy:
+    src: etc/systemd/system/routinator.service
+    dest: /etc/systemd/system/routinator.service
+  notify:
+    - restart rsyslog
+
+# Check if routinator has been initialized
+- name: main | Check init folder exist exist
+  stat:
+    path: '{{ routinator_home }}/.rpki-cache'
+  register: routinator_init_directory
+# If not do it. 
+- name: main | Init routinator
+  shell: /usr/local/bin/routinator init --accept-arin-rpa
+  when: routinator_init_directory.stat.isdir is not defined
+  become: yes
+  become_user: routinator
+
+- name: main | Copy routinator configration file
+  template:
+    src: etc/routinator.conf.j2
+    dest: /etc/routinator.conf
+  notify:
+    - restart routinator
+
+- name: main | Enable and start systemd service
+  systemd:
+    name: routinator
+    state: started
+    enabled: yes
