@@ -20,7 +20,12 @@ Role Variables
 
 Variables that should be filled are:
 
-* octorpki_homedir (default /usr/share/octorpki)
+* octorpki_homedir (default /usr/share/octorpki)'
+In the hosts.yaml you can specifiy a syslog destination. 
+* __routinator_syslog_destination:__ 
+              __protocol:__ tcp 
+              __target:__ 10.10.10.10
+              __port:__ 514
 
 Dependencies
 ------------
