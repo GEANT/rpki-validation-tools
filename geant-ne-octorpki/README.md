@@ -1,4 +1,4 @@
-Role Name
+geant-ne-octorpki 
 =========
 
 This role installs OctoRPKI and GoRTR on a Ubuntu 18.04.
@@ -12,7 +12,8 @@ https://github.com/cloudflare/cfrpki
 Requirements
 ------------
 
-NA
+This role has been developed and tested on Ubuntu 18.04 (Bionic Beaver)
+
 
 Role Variables
 --------------
@@ -29,14 +30,11 @@ NA
 Example Playbook
 ----------------
 
-NA
+Check install_octorpki.yaml in the upper folder. 
 
-License
--------
 
-BSD
 
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+simone.spinelli@geant.org
