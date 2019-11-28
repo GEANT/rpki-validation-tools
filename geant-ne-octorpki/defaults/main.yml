@@ -2,3 +2,10 @@
 # defaults file for geant-ne-octorpki
 octorpki_homedir: /usr/share/octorpki
 octorpki_packages_dir: "{{ octorpki_homedir }}/packages"
+octo_components:
+  gortr:
+    version: "{{ gortr_version }}"
+    url: https://github.com/cloudflare/gortr/releases/download
+  octorpki: 
+    version: "{{ octorpki_version }}"
+    url: https://github.com/cloudflare/cfrpki/releases/download

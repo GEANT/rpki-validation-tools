@@ -24,15 +24,15 @@
     src: etc/logrotate.d/octorpki
     dest: /etc/logrotate.d/octorpki
 
-- name: main | Copy packages
-  copy: 
-    src: "packages/{{ item.value.package }}"
-    dest: "{{ octorpki_packages_dir }}/{{ item.value.package }}"
+- name: main | Download packages
+  get_url: 
+    url: "{{ item.value.url }}/v{{item.value.version}}/{{ item.key }}_{{item.value.version}}_amd64.deb"
+    dest: "{{ octorpki_packages_dir }}/{{ item.key }}_{{item.value.version}}_amd64.deb"
   loop: "{{ lookup('dict', octo_components) }}"
 
 - name: main | Install  packages
   apt: 
-    deb: "{{ octorpki_packages_dir }}/{{ item.value.package }}"
+    deb: "{{ octorpki_packages_dir }}/{{ item.key }}_{{item.value.version}}_amd64.deb"
   loop: "{{ lookup('dict', octo_components) }}"
 
 - name: main | Copy systemd service definition

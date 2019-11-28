@@ -1,8 +1,13 @@
 ---
 # vars file for geant-ne-octorpki
-octo_components: 
-  gortr: 
-    package: gortr_0.12.0_amd64.deb
-  octorpki: 
-    package: octorpki_1.1.4_amd64.deb
-
+#octo_components: 
+#  gortr: 
+#    version: 0.13.0
+#    url: https://github.com/cloudflare/gortr/releases/download
+#  octorpki: 
+#    version: 1.1.4
+#    url: https://github.com/cloudflare/cfrpki/releases/download
+#
+#Dowloads: 
+#https://github.com/cloudflare/cfrpki/releases
+#https://github.com/cloudflare/gortr/releases/
