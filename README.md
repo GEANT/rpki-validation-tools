@@ -16,7 +16,7 @@ What you will get:
 To run these playbooks with little fuss, you will need:
 - Ubuntu (we developed this on 18.04)
 - git
-- Ansible
+- Ansible (tested on 2.5.1 and 2.8.4)
 - sshpass (if you want to use Ansible with passwords)
 
 Git clone the repository to your ansible machine, cd into the directory 'rpki-validation-tools'..
