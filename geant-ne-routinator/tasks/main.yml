@@ -13,9 +13,11 @@
 # check https://github.com/NLnetLabs/routinator
 - name: main | Install routinator executable
   copy:
-    src: usr/local/bin/routinator-0.6.2
+    src: "usr/local/bin/routinator-{{routinator_version}}"
     dest: /usr/local/bin/routinator
     mode: +x
+  notify:
+    - restart routinator
 
 # Logging: 
 - name: main | Rsyslogd configuration
@@ -43,6 +45,7 @@
   stat:
     path: '{{ routinator_home }}/.rpki-cache'
   register: routinator_init_directory
+
 # If not do it. 
 - name: main | Init routinator
   shell: /usr/local/bin/routinator init --accept-arin-rpa
