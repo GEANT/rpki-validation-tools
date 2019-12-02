@@ -18,9 +18,9 @@ About versions and binaries:
 - OctoRPKI/GoRTR: packages are downloaded from github and installed
 
 References: 
-Octorpki: https://github.com/cloudflare/cfrpki/releases
-GoRTR: https://github.com/cloudflare/gortr/releases
-Routinator: https://github.com/NLnetLabs/routinator/releases
+- Octorpki: https://github.com/cloudflare/cfrpki/releases
+- GoRTR: https://github.com/cloudflare/gortr/releases
+- Routinator: https://github.com/NLnetLabs/routinator/releases
 
 
 ## Pre-requirements
