@@ -11,6 +11,18 @@ What you will get:
 - A systemd service to get things going
 - Automatic installation of TALs
 
+About versions and binaries:
+
+- You can specify a specific version for the software you want to install (by default the latest we have tested will be installed)
+- Routinator: At the moment we provide a binary, until NLNetLabs do it for you!
+- OctoRPKI/GoRTR: packages are downloaded from github and installed
+
+References: 
+Octorpki: https://github.com/cloudflare/cfrpki/releases
+GoRTR: https://github.com/cloudflare/gortr/releases
+Routinator: https://github.com/NLnetLabs/routinator/releases
+
+
 ## Pre-requirements
 
 To run these playbooks with little fuss, you will need:
@@ -47,6 +59,7 @@ all:
               protocol: tcp
               target: 10.10.10.10
               port: 514
+      routinator_version: 0.6.4 ## Insert here the version you want to install 
     octorpki-vm:
       ansible_host: 192.168.56.197
       become: yes
@@ -56,6 +69,9 @@ all:
               protocol: tcp
               target: 192.168.22.23
               port: 666
+      gortr_version: 0.13.0 ## Insert here the version you want to install
+      octorpki_version: 1.1.4 ## Insert here the version you want to install
+
 ```
 
 
